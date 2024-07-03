@@ -1,4 +1,4 @@
-Exercitando o conceito de REST API com FLASK. 
+Exercitando o conceito de REST API com FLASK e FLASK RESTFull. 
 
 Ambiente de desenvolvimento: Pycharm Comunity.
 
