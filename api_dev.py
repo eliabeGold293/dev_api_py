@@ -2,8 +2,6 @@ from flask import Flask, jsonify, request
 import json
 app = Flask(__name__)
 
-#lista desenvolvedores
-
 desenvolvedores = [
     {
         'ID': 0,
@@ -33,8 +31,6 @@ def desenvolvedor(id):
             response = {'status': 'erro', 'mensagem': mensagem}
         return jsonify(response)
 
-    # o metodo PUT vai atualizar ou criar recursos. ele é usado para atualizar os dados de um usuario por exemplo.
-    # ele é usado para alterações completas.
     elif request.method == 'PUT':
         dados = json.loads(request.data)
         desenvolvedores[id] = dados
@@ -44,20 +40,14 @@ def desenvolvedor(id):
         desenvolvedores.pop(id)
         return jsonify({'status': 'registro excluido'})
 
-# lista todos os desenvolvedores e inclui um novo desenvolvedor
 @app.route('/dev/', methods = ['POST', 'GET', 'DELETE'])
 def lista_desenvolvedores():
 
     if request.method == 'POST':
         dados = json.loads(request.data)
         desenvolvedores.append(dados)
-
-        # agora eu quero inserir tbm um ID para o desenvolvedor então
         posicao = len(desenvolvedores)
-
-        #crio uma nova variavel chamada ID dentro da lista
         dados['ID'] = posicao
-        # acrescentando a lista de desenvolvedores a nova variável ID
         desenvolvedores.append(dados)
 
         mensagem = 'desenvolvedor inserido com sucesso'
